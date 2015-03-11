@@ -48,11 +48,11 @@ class Office
   def scrape(arg)
     case arg
     when 'link'
-      (@element/"//a[@class='buildingname']").attr('href').value
+      (@element/"a[@class='buildingname']").attr('href').value
     when '物件No.'
-      (@element/"//span[@class='buildingno']").text.delete '物件No.'
+      (@element/"span[@class='buildingno']").text.delete '物件No.'
     when 'ビル名'
-      (@element/"//a[@class='buildingname']").text
+      (@element/"a[@class='buildingname']").text
     end
   end
 
