@@ -71,6 +71,7 @@ describe Crawler do
 
       expect(offices.size).to be 10
       expect(offices).to be_all{ |office| office.is_a? Office }
+      expect(offices.first['link']).to eq('/detail/3/30001/52429.html')
     end
   end
 end
