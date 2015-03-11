@@ -25,6 +25,16 @@ describe Crawler do
         expect(c.next_page_url).to eq('http://www.officeiten.jp/addr/aa3/ha20/za2/')
       end
     end
+
+    context 'when next_page_link_element is nil' do
+      it do
+        c = Crawler.new(start_at: 'http://example.com/hogehoge')
+        allow(c).to receive(:next_page_link_element).and_return(nil)
+        allow(c).to receive(:scheme_and_host).and_return('http://www.officeiten.jp')
+
+        expect(c.next_page_url).to be nil
+      end
+    end
   end
 
   describe '#next_page_link_element' do

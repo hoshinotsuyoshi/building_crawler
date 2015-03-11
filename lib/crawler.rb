@@ -15,7 +15,9 @@ class Crawler < Mechanize
   end
 
   def next_page_url
-    scheme_and_host + next_page_link_element.attr(:href)
+    if next_page_link_element
+      scheme_and_host + next_page_link_element.attr(:href)
+    end
   end
 
   def next_page_link_element
