@@ -2,6 +2,7 @@ ENV['test'] = 'true'
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'crawler'
 require 'webmock'
+require 'pry'
 
 PROJECT_ROOT = Pathname.new(File.expand_path('../..', __FILE__))
 
