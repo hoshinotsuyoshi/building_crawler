@@ -108,12 +108,22 @@ describe Office do
 end
 
 describe Printer do
+  describe '#print_header' do
+    it do
+      p = Printer.new
+      office = { 'a' => '1', 'b' => '2', 'c' => '3' }
+      expect(STDOUT).to receive(:puts).with("a\tb\tc")
+      expect(STDOUT).not_to receive(:puts).with("1\t2\t3")
+      p.print_header(office)
+    end
+  end
+
   describe '#print' do
     it do
       p = Printer.new
       office = { 'a' => '1', 'b' => '2', 'c' => '3' }
-      expect(STDOUT).to receive(:puts).with("a\tb\tc").ordered
-      expect(STDOUT).to receive(:puts).with("1\t2\t3").ordered
+      expect(STDOUT).not_to receive(:puts).with("a\tb\tc")
+      expect(STDOUT).to receive(:puts).with("1\t2\t3")
       p.print(office)
     end
   end

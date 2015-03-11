@@ -65,10 +65,13 @@ class Office
 end
 
 class Printer
-  def print(office)
+  def print_header(office)
     header = office.keys.join("\t")
-    row = office.values.join("\t")
     puts header
+  end
+
+  def print(office)
+    row = office.values.join("\t")
     puts row
   end
 end
