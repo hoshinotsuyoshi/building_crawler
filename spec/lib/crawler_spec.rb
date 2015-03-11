@@ -71,9 +71,9 @@ describe Crawler do
       c = Crawler.new(start_at: 'http://example.com/hogehoge')
 
       expect(c).to receive(:next_page_url).and_return('http://example.com/hogehoge2')
-      expect(c).to receive(:get).with('http://example.com/hogehoge2')
+      expect(c).to receive(:get).with('http://example.com/hogehoge2').and_return(true)
 
-      c.visit_next_page
+      expect(c.visit_next_page).to be_truthy
     end
   end
 
