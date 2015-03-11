@@ -74,3 +74,25 @@ describe Crawler do
     end
   end
 end
+
+describe Office do
+  describe '#[]' do
+    context 'given "link"' do
+      it do
+        fixture_path = PROJECT_ROOT + 'spec/fixtures/office.html'
+        o = Office.new(Nokogiri::XML.parse fixture_path.read)
+
+        expect(o['link']).to eq('/detail/3/30001/52429.html')
+      end
+    end
+
+    context 'given "物件No."' do
+      it do
+        fixture_path = PROJECT_ROOT + 'spec/fixtures/office.html'
+        o = Office.new(Nokogiri::XML.parse fixture_path.read)
+
+        expect(o['物件No.']).to eq('FVL52429')
+      end
+    end
+  end
+end

@@ -32,3 +32,18 @@ class Crawler < Mechanize
     offices.select{|e| e.text.include?('物件No.')} # 別のリンクも含んでしまうため
   end
 end
+
+class Office
+  def initialize(element)
+    @element = element
+  end
+
+  def [](arg)
+    case arg
+    when 'link'
+      (@element/"//a[@class='buildingname']").attr('href').value
+    when '物件No.'
+      (@element/"//span[@class='buildingno']").text.delete '物件No.'
+    end
+  end
+end
