@@ -67,13 +67,26 @@ describe Crawler do
   end
 
   describe '#visit_next_page' do
-    it do
-      c = Crawler.new(start_at: 'http://example.com/hogehoge')
+    context 'next_page_url is not nil' do
+      it do
+        c = Crawler.new(start_at: 'http://example.com/hogehoge')
 
-      expect(c).to receive(:next_page_url).and_return('http://example.com/hogehoge2')
-      expect(c).to receive(:get).with('http://example.com/hogehoge2').and_return(true)
+        expect(c).to receive(:next_page_url).and_return('http://example.com/hogehoge2')
+        expect(c).to receive(:get).with('http://example.com/hogehoge2').and_return(true)
 
-      expect(c.visit_next_page).to be_truthy
+        expect(c.visit_next_page).to be_truthy
+      end
+    end
+
+    context 'next_page_url is nil' do
+      it do
+        c = Crawler.new(start_at: 'http://example.com/hogehoge')
+
+        expect(c).to receive(:next_page_url).and_return(nil)
+        expect(c).not_to receive(:get)
+
+        expect(c.visit_next_page).to be_falsy
+      end
     end
   end
 

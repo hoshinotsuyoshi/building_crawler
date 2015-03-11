@@ -29,7 +29,7 @@ class Crawler < Mechanize
   end
 
   def visit_next_page
-    get(next_page_url)
+    (url = next_page_url) && get(url)
   end
 
   def offices
