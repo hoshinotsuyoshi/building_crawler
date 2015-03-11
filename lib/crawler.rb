@@ -37,9 +37,22 @@ end
 class Office
   def initialize(element)
     @element = element
+    build_content
   end
 
   def [](arg)
+    @content[arg]
+  end
+
+  def keys
+    @content.keys
+  end
+
+  def values
+    @content.values
+  end
+
+  def scrape(arg)
     case arg
     when 'link'
       (@element/"//a[@class='buildingname']").attr('href').value
@@ -47,6 +60,15 @@ class Office
       (@element/"//span[@class='buildingno']").text.delete '物件No.'
     when 'ビル名'
       (@element/"//a[@class='buildingname']").text
+    end
+  end
+
+  private
+
+  def build_content
+    @content = {}
+    %w(link 物件No. ビル名).each do |e|
+      @content[e] = scrape(e)
     end
   end
 end
