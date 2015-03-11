@@ -20,4 +20,8 @@ class Crawler < Mechanize
 
   def next_page_url
   end
+
+  def scheme_and_host
+    @start_at.split('/')[0, 3].join('/')
+  end
 end

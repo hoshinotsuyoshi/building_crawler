@@ -1,4 +1,11 @@
 describe Crawler do
+  describe '#scheme_and_host' do
+    it do
+      c = Crawler.new(start_at: 'http://www.officeiten.jp/addr/aa3/ha20/')
+      expect(c.scheme_and_host).to eq('http://www.officeiten.jp')
+    end
+  end
+
   describe '#current_page' do
     it do
       c = Crawler.new(start_at: 'http://www.officeiten.jp/addr/aa3/ha20/')
