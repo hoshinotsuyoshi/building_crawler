@@ -35,22 +35,13 @@ class Crawler < Mechanize
 end
 
 class Office
+  extend Forwardable
   def initialize(element)
     @element = element
     build_content
   end
 
-  def [](arg)
-    @content[arg]
-  end
-
-  def keys
-    @content.keys
-  end
-
-  def values
-    @content.values
-  end
+  def_delegators :@content, :[], :keys, :values
 
   def scrape(arg)
     case arg
