@@ -13,10 +13,14 @@ describe Crawler do
     end
   end
 
-  xdescribe '#next_page_url' do
+  describe '#next_page_url' do
     it do
-      c = Crawler.new(start_at: 'http://www.officeiten.jp/addr/aa3/ha20/')
-      c.visit_start_page
+      c = Crawler.new(start_at: 'http://example.com/hogehoge')
+      link_element = double(:link_element)
+      allow(c).to receive(:next_page_link_element).and_return(link_element)
+      allow(c).to receive(:scheme_and_host).and_return('http://www.officeiten.jp')
+
+      expect(link_element).to receive(:attr).with(:href).and_return('/addr/aa3/ha20/za2/')
       expect(c.next_page_url).to eq('http://www.officeiten.jp/addr/aa3/ha20/za2/')
     end
   end
