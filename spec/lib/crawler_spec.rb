@@ -53,4 +53,24 @@ describe Crawler do
       c.visit_start_page
     end
   end
+
+  describe '#offices' do
+    it 'returns 10 offices' do
+      fixture_path = PROJECT_ROOT + 'spec/fixtures/ha20.html'
+      WebMock.stub_request(
+        :get,
+        'http://www.officeiten.jp/addr/aa3/ha20/'
+      ).to_return(
+        body: fixture_path.read,
+        headers: { content_type: 'text/html' }
+      )
+
+      c = Crawler.new(start_at: 'http://www.officeiten.jp/addr/aa3/ha20/')
+      c.visit_start_page
+      offices = c.offices
+
+      expect(offices.size).to be 10
+      expect(offices).to be_all{ |office| office.is_a? Nokogiri::XML::Element }
+    end
+  end
 end

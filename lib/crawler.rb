@@ -25,4 +25,10 @@ class Crawler < Mechanize
   def visit_start_page
     get(@start_at)
   end
+
+  def offices
+    selector = "//*[@id='result']/div[@class='result_box clearfix']"
+    offices = page / selector
+    offices.select{|e| e.text.include?('物件No.')} # 別のリンクも含んでしまうため
+  end
 end
