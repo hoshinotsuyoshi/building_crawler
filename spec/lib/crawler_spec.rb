@@ -95,5 +95,14 @@ describe Office do
         expect(o['物件No.']).to eq('FVL52429')
       end
     end
+
+    context 'given "ビル名"' do
+      it do
+        fixture_path = PROJECT_ROOT + 'spec/fixtures/office.html'
+        o = Office.new(Nokogiri::XML.parse fixture_path.read)
+
+        expect(o['ビル名']).to eq('中村ビル')
+      end
+    end
   end
 end
