@@ -106,3 +106,15 @@ describe Office do
     end
   end
 end
+
+describe Printer do
+  describe '#print' do
+    it do
+      p = Printer.new
+      office = { 'a' => '1', 'b' => '2', 'c' => '3' }
+      expect(STDOUT).to receive(:puts).with("a\tb\tc").ordered
+      expect(STDOUT).to receive(:puts).with("1\t2\t3").ordered
+      p.print(office)
+    end
+  end
+end
