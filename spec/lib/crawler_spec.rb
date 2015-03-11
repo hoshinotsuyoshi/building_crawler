@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Crawler do
   describe '#current_page' do
     it do
