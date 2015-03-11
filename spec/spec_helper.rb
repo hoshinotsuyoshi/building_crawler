@@ -3,6 +3,8 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'crawler'
 require 'webmock'
 
+PROJECT_ROOT = Pathname.new(File.expand_path('../..', __FILE__))
+
 WebMock.disable_net_connect!
 
 RSpec.configure do |config|
