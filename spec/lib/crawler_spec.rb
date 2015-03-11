@@ -55,7 +55,7 @@ describe Crawler do
   end
 
   describe '#offices' do
-    it 'returns 10 offices' do
+    it 'returns 10-Office collection' do
       fixture_path = PROJECT_ROOT + 'spec/fixtures/ha20.html'
       WebMock.stub_request(
         :get,
@@ -70,7 +70,7 @@ describe Crawler do
       offices = c.offices
 
       expect(offices.size).to be 10
-      expect(offices).to be_all{ |office| office.is_a? Nokogiri::XML::Element }
+      expect(offices).to be_all{ |office| office.is_a? Office }
     end
   end
 end

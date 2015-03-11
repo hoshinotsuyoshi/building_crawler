@@ -29,7 +29,8 @@ class Crawler < Mechanize
   def offices
     selector = "//*[@id='result']/div[@class='result_box clearfix']"
     offices = page / selector
-    offices.select{|e| e.text.include?('物件No.')} # 別のリンクも含んでしまうため
+    offices = offices.select{|e| e.text.include?('物件No.')} # 別のリンクも含んでしまうため
+    offices.map{|e| Office.new(e) }
   end
 end
 
