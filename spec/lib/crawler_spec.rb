@@ -113,7 +113,6 @@ describe Printer do
       p = Printer.new
       office = { 'a' => '1', 'b' => '2', 'c' => '3' }
       expect(STDOUT).to receive(:puts).with("a\tb\tc")
-      expect(STDOUT).not_to receive(:puts).with("1\t2\t3")
       p.print_header(office)
     end
   end
@@ -122,7 +121,6 @@ describe Printer do
     it do
       p = Printer.new
       office = { 'a' => '1', 'b' => '2', 'c' => '3' }
-      expect(STDOUT).not_to receive(:puts).with("a\tb\tc")
       expect(STDOUT).to receive(:puts).with("1\t2\t3")
       p.print(office)
     end
