@@ -26,6 +26,10 @@ class Crawler < Mechanize
     get(@start_at)
   end
 
+  def visit_next_page
+    get(next_page_url)
+  end
+
   def offices
     selector = "//*[@id='result']/div[@class='result_box clearfix']"
     offices = page / selector

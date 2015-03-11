@@ -8,6 +8,7 @@ p = Printer.new
 c.visit_start_page
 
 p.print_header(c.offices.first)
+
 c.offices.each do |o|
   p.print(o)
 end

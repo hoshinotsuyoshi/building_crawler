@@ -54,6 +54,17 @@ describe Crawler do
     end
   end
 
+  describe '#visit_next_page' do
+    it do
+      c = Crawler.new(start_at: 'http://example.com/hogehoge')
+
+      expect(c).to receive(:next_page_url).and_return('http://example.com/hogehoge2')
+      expect(c).to receive(:get).with('http://example.com/hogehoge2')
+
+      c.visit_next_page
+    end
+  end
+
   describe '#offices' do
     it 'returns 10-Office collection' do
       fixture_path = PROJECT_ROOT + 'spec/fixtures/ha20.html'
