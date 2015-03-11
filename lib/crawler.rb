@@ -43,6 +43,8 @@ class Office
 
   def_delegators :@content, :[], :keys, :values
 
+  private
+
   def scrape(arg)
     case arg
     when 'link'
@@ -53,8 +55,6 @@ class Office
       (@element/"//a[@class='buildingname']").text
     end
   end
-
-  private
 
   def build_content
     @content = {}
